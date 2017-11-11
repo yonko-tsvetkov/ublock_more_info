@@ -1,0 +1,4 @@
+name = UBlock More Info
+description = Show user block more info.
+core = 7.x
+package = Custom

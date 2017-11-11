@@ -1,0 +1,65 @@
+<?php
+
+module_load_include('inc', 'ublock_more_info', 'ublock_more_info.blocks');
+
+/**
+ * Implements hook_menu().
+ */
+function ublock_more_info_menu() {
+  $items['author-more-info/%user/%'] = array(
+    'page callback' => 'ublock_more_info_get_user_more_info',
+    'page arguments' => array(1, 2),
+    'delivery callback' => 'ajax_deliver',
+    'access callback' => TRUE,
+    'file' => 'ublock_more_info.pages.inc',
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_block().
+ */
+function author_deck_block_info() {
+  $blocks['ublock_more_info'] = array(
+    'info' => t('Author info'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function ublock_more_info_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'ublock_more_info':
+      $block['subject'] = t('Author info');
+      $block['content'] = ublock_more_info_get_user_deck_block();
+      break;
+  }
+  return $block;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function ublock_more_info_theme($existing, $type, $theme, $path) {
+  return array(
+    'ublock_more_info' => array(
+      'variables' => array(
+        'user' => NULL,
+      ),
+      'file' => 'ublock_more_info.theme.inc',
+    ),
+    'ublock_more_info_more_info' => array(
+      'variables' => array(
+        'user' => NULL,
+        'fields' => array(),
+      ),
+      'file' => 'ublock_more_info.theme.inc',
+    ),
+  );
+}
