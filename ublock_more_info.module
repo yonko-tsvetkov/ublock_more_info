@@ -21,7 +21,7 @@ function ublock_more_info_menu() {
  */
 function author_deck_block_info() {
   $blocks['ublock_more_info'] = array(
-    'info' => t('Author info'),
+    'info' => t('User info'),
     'cache' => DRUPAL_NO_CACHE,
   );
 
