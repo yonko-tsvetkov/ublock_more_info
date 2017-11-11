@@ -36,7 +36,7 @@ function ublock_more_info_block_view($delta = '') {
 
   switch ($delta) {
     case 'ublock_more_info':
-      $block['subject'] = t('Author info');
+      $block['subject'] = t('User info');
       $block['content'] = ublock_more_info_get_user_deck_block();
       break;
   }
